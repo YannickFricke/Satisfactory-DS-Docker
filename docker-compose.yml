@@ -1,0 +1,13 @@
+version: '3'
+services:
+    server:
+        image: yannickfricke/satisfactory-server
+        build:
+            context: .
+        ports:
+            - 15777:15777/udp
+            - 15000:15000/udp
+            - 7777:7777/udp
+        volumes:
+            - ./shared/SaveGames:/home/steam/.config/Epic/FactoryGame/Saved/SaveGames/server
+        restart: unless-stopped
