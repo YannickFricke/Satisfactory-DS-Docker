@@ -112,7 +112,7 @@ async function getLatestBuildId() {
             } else {
                 const steamData = json.data['1690800'];
                 const branchData = steamData.depots.branches;
-                const latestBuildId = branchData.staging.buildid;
+                const latestBuildId = branchData.public.buildid;
 
                 return latestBuildId;
             }
