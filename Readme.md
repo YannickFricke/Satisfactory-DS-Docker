@@ -37,7 +37,7 @@ The minimum hardware requirements for running the dedicated server which are lis
 
 ## How to setup
 
-Download the repository to your computer or server and run the following commands:
+Download the repository to your computer or server and run the following command:
 
 - docker-compose up
 
