@@ -103,7 +103,7 @@ async function checkForUpdates() {
     }
 }
 
-async function getLatestBuildId() {
+function getLatestBuildId() {
     return fetch('https://api.steamcmd.net/v1/info/1690800')
         .then(res => res.json())
         .then(json => {
