@@ -99,6 +99,7 @@ async function checkForUpdates() {
         push();
     } catch (error) {
         console.error(`Unhandled script error: ${error}`);
+        process.exit(1);
     }
 }
 
