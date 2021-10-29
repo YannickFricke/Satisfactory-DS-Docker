@@ -19,13 +19,12 @@ There are only three reasons why you need a dedicated server:
 ## Requirements
 
 - [Docker](https://docs.docker.com/engine/install/)
-- [docker-compose](https://docs.docker.com/compose/install/)
+- [docker-compose](https://docs.docker.com/compose/install/) (if you don't wanna use the Docker CLI directly)
 
 ## How to setup
 
 Download the repository to your computer or server and run the following commands:
 
-- docker-compose build
 - docker-compose up
 
 ### Further ingame setup
