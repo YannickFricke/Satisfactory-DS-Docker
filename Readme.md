@@ -21,6 +21,8 @@ There are only three reasons why you need a dedicated server:
 - [Docker](https://docs.docker.com/engine/install/)
 - [docker-compose](https://docs.docker.com/compose/install/) (if you don't wanna use the Docker CLI directly)
 
+The minimum hardware requirements for running the dedicated server which are listed [here](https://satisfactory.fandom.com/wiki/Dedicated_servers#Minimum_requirements).
+
 ## How to setup
 
 Download the repository to your computer or server and run the following commands:
