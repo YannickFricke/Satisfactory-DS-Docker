@@ -1,0 +1,32 @@
+name: Update check
+
+on:
+    schedule:
+        - cron: '* */1 * * *'
+
+jobs:
+    update:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2.2.0
+              with:
+                  fetch-depth: 0
+            - name: Use Node.js 16.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 16.x
+            - name: Install system dependencies
+              run: sudo apt-get update && sudo apt-get install -y git curl jq
+            - name: 'Get Previous tag'
+              id: previoustag
+              uses: 'WyriHaximus/github-action-get-previous-tag@v1'
+              with:
+                  fallback: 0000000
+            - name: 'Run the update script'
+              id: update
+              env:
+                  PREVIOUS_TAG: '${{ steps.previoustag.outputs.tag }}'
+                  DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
+              run: |
+                  npm install
+                  node ./ci/update.mjs

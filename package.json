@@ -1,0 +1,20 @@
+{
+  "name": "@yannickfricke/satisfactory-ds-docker-ci",
+  "private": true,
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YannickFricke/Satisfactory-DS-Docker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YannickFricke/Satisfactory-DS-Docker/issues"
+  },
+  "dependencies": {
+    "execa": "^5.1.1",
+    "jq": "^1.7.2",
+    "node-fetch": "^3.0.0"
+  }
+}
