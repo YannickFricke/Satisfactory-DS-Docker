@@ -12,11 +12,13 @@ Volumes should ONLY be used for user specific configuration / files. The server 
 
 Imagine Coffee Stain Studios breaks the dedicated server software and you wanna play with your friends. Other images would download and store the new server files in the volume. Now every time you start a new container it would read the broken server files and then crash.
 
+It wouldn't even help to completely remove the local image due to that these kind of images are using Shell scripts to download and update the server files dynamically.
+
 With this image this can't happen due to that the server files are stored as immutable data inside the container. Coffee Stain Studios broke the build? No problem! Just use the previous build id to run the old image and play with your friends!
 
 ### Do I really need a dedicated server now?
 
-Definetly not! Satisfactory still has the "old" multiplayer mode which is probably less buggy than the dedicated servers.
+Definetly not! Satisfactory still has the "old" multiplayer mode (through sessions and invites) which is probably less buggy than the dedicated servers.
 
 ### When do I need a dedicated server?
 
