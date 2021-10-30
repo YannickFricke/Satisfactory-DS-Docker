@@ -1,7 +1,7 @@
 version: '3'
 services:
     server:
-        image: yannickfricke/satisfactory-server
+        image: yfricke/satisfactory-server
         ports:
             - 15777:15777/udp
             - 15000:15000/udp
