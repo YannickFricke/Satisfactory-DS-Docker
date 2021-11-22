@@ -86,13 +86,15 @@ function createTags(latestBuildId) {
         throw new Error(`Failed to tag docker image: ${dockerTagResult.all}`);
     }
 
-    const gitTagResult = execa.sync('git', ['tag', `-a`, latestBuildId, '-m', `"Updated to build version ${latestBuildId}"`], {
-        all: true,
-        stdio: 'inherit'
-    });
-
-    if (gitTagResult.failed && forceUpdate === undefined) {
-        throw new Error(`Failed to create git tag ${latestBuildId}: ${gitTagResult.all}`);
+    if (forceUpdate === undefined) {
+        const gitTagResult = execa.sync('git', ['tag', `-a`, latestBuildId, '-m', `"Updated to build version ${latestBuildId}"`], {
+            all: true,
+            stdio: 'inherit'
+        });
+    
+        if (gitTagResult.failed) {
+            throw new Error(`Failed to create git tag ${latestBuildId}: ${gitTagResult.all}`);
+        }
     }
 }
 
@@ -115,13 +117,15 @@ function push() {
         throw new Error(`Failed to push docker image: ${githubPushResult.all}`);
     }
 
-    const gitPushResult = execa.sync('git', ['push', 'origin', '--tags'], {
-        all: true,
-        stdio: 'inherit'
-    });
-
-    if (gitPushResult.failed && forceUpdate === undefined) {
-        throw new Error(`Failed to push GIT tag ${latestBuildId}: ${gitPushResult.all}`);
+    if (forceUpdate === undefined) {
+        const gitPushResult = execa.sync('git', ['push', 'origin', '--tags'], {
+            all: true,
+            stdio: 'inherit'
+        });
+    
+        if (gitPushResult.failed) {
+            throw new Error(`Failed to push GIT tag ${latestBuildId}: ${gitPushResult.all}`);
+        }
     }
 }
 
