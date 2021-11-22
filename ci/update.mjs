@@ -6,7 +6,7 @@ const dockerToken = process.env.DOCKER_TOKEN;
 const githubToken = process.env.GH_TOKEN;
 const forceUpdate = process.env.FORCE_UPDATE;
 const imageName = 'yfricke/satisfactory-server';
-const ghcrImageName = 'ghcr.io/YannickFricke/Satisfactory-DS-Docker';
+const ghcrImageName = 'ghcr.io/yannickfricke/satisfactory-ds-docker';
 
 function setup() {
     if (!dockerToken) {
@@ -30,7 +30,7 @@ function setup() {
         throw new Error(`Failed to login to Docker hub: ${dockerLoginResult.all}`);
     }
 
-    const githubLoginResult = execa.sync('docker', ['login', 'ghcr.io', '-u', `YannickFricke`, '-p', githubToken], {
+    const githubLoginResult = execa.sync('docker', ['login', 'ghcr.io', '-u', `yannickfricke`, '-p', githubToken], {
         all: true,
         stdio: 'inherit'
     });
