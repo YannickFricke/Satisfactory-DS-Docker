@@ -29,6 +29,7 @@ jobs:
                   PREVIOUS_TAG: '${{ steps.previoustag.outputs.tag }}'
                   DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
                   GH_TOKEN: ${{secrets.GH_TOKEN}}
+                  FORCE_UPDATE: 1
               run: |
                   npm install
                   node ./ci/update.mjs

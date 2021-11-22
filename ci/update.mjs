@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 const previousPublishedBuild = process.env.PREVIOUS_TAG;
 const dockerToken = process.env.DOCKER_TOKEN;
 const githubToken = process.env.GH_TOKEN;
+const forceUpdate = process.env.FORCE_UPDATE;
 const imageName = 'yfricke/satisfactory-server';
 const ghcrImageName = 'ghcr.io/YannickFricke/Satisfactory-DS-Docker';
 
@@ -129,7 +130,7 @@ async function checkForUpdates() {
         setup();
         const latestBuildId = await getLatestBuildId();
 
-        if (previousPublishedBuild === latestBuildId) {
+        if (previousPublishedBuild === latestBuildId && forceUpdate === undefined) {
             console.log('No updates available');
             return;
         }
