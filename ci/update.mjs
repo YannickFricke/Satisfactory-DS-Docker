@@ -13,7 +13,7 @@ function setup() {
     }
 
     if (!githubToken) {
-        throw new Error('DOCKER_TOKEN environment variable is not set');
+        throw new Error('GITHUB_TOKEN environment variable is not set');
     }
 
     if (!previousPublishedBuild) {
