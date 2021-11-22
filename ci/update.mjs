@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 const previousPublishedBuild = process.env.PREVIOUS_TAG;
 const dockerToken = process.env.DOCKER_TOKEN;
-const githubToken = process.env.GITHUB_TOKEN;
+const githubToken = process.env.GH_TOKEN;
 const imageName = 'yfricke/satisfactory-server';
 const ghcrImageName = 'ghcr.io/YannickFricke/Satisfactory-DS-Docker';
 
@@ -13,7 +13,7 @@ function setup() {
     }
 
     if (!githubToken) {
-        throw new Error('GITHUB_TOKEN environment variable is not set');
+        throw new Error('GH_TOKEN environment variable is not set');
     }
 
     if (!previousPublishedBuild) {
