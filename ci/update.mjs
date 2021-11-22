@@ -91,7 +91,7 @@ function createTags(latestBuildId) {
         stdio: 'inherit'
     });
 
-    if (gitTagResult.failed) {
+    if (gitTagResult.failed && forceUpdate === undefined) {
         throw new Error(`Failed to create git tag ${latestBuildId}: ${gitTagResult.all}`);
     }
 }
@@ -120,7 +120,7 @@ function push() {
         stdio: 'inherit'
     });
 
-    if (gitPushResult.failed) {
+    if (gitPushResult.failed && forceUpdate === undefined) {
         throw new Error(`Failed to push GIT tag ${latestBuildId}: ${gitPushResult.all}`);
     }
 }
