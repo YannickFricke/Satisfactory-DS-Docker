@@ -5,6 +5,7 @@ const previousPublishedBuild = process.env.PREVIOUS_TAG;
 const dockerToken = process.env.DOCKER_TOKEN;
 const githubToken = process.env.GH_TOKEN;
 const forceUpdate = process.env.FORCE_UPDATE;
+const depotName = process.env.DEPOT_NAME || 'public';
 const imageName = 'yfricke/satisfactory-server';
 const ghcrImageName = 'ghcr.io/yannickfricke/satisfactory-ds-docker';
 
@@ -76,7 +77,7 @@ function createTags(latestBuildId) {
     if (ghcrLatestBuildTagResult.failed) {
         throw new Error(`Failed to tag docker image: ${ghcrLatestBuildTagResult.all}`);
     }
-    
+
     const dockerTagResult = execa.sync('docker', ['image', 'tag', `${imageName}:latest`, `${imageName}:${latestBuildId}`], {
         all: true,
         stdio: 'inherit'
@@ -91,7 +92,7 @@ function createTags(latestBuildId) {
             all: true,
             stdio: 'inherit'
         });
-    
+
         if (gitTagResult.failed) {
             throw new Error(`Failed to create git tag ${latestBuildId}: ${gitTagResult.all}`);
         }
@@ -122,7 +123,7 @@ function push() {
             all: true,
             stdio: 'inherit'
         });
-    
+
         if (gitPushResult.failed) {
             throw new Error(`Failed to push GIT tag ${latestBuildId}: ${gitPushResult.all}`);
         }
@@ -159,7 +160,7 @@ function getLatestBuildId() {
             } else {
                 const steamData = json.data['1690800'];
                 const branchData = steamData.depots.branches;
-                const latestBuildId = branchData.public.buildid;
+                const latestBuildId = branchData[depotName].buildid;
 
                 return latestBuildId;
             }
