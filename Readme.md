@@ -37,10 +37,14 @@ The minimum hardware requirements for running the dedicated server which are lis
 
 ## How to setup
 
-Download the repository to your computer or server and run the following command:
+1. Download the repository to your computer or server and run the following command:
 
 - docker-compose up
 
+2. Make sure that the host directory that your [bind mount](https://docs.docker.com/storage/bind-mounts/) uses has the correct permissions for the container user. Because this image runs the server executable as the `steam` user, a bind mount might not be writable for the `steam` user. If you run into this issue run the following command from the base folder of the repository:
+
+- `chown -R 1000:1000 /shared` 
+ 
 ### Further ingame setup
 
 Take a look at the awesome video of Jace (one of the Community Managers @ Coffee Stain Studios) on how to set up the server ingame [here](https://youtu.be/Nn-1s87JJxc?t=490).
