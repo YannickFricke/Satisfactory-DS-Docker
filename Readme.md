@@ -39,7 +39,7 @@ The minimum hardware requirements for running the dedicated server which are lis
 
 1. Download the repository to your computer or server and run the following command:
 
-- docker-compose up
+- `docker-compose up -d`
 
 2. Make sure that the host directory that your [bind mount](https://docs.docker.com/storage/bind-mounts/) uses has the correct permissions for the container user. Because this image runs the server executable as the `steam` user, a bind mount might not be writable for the `steam` user. If you run into this issue run the following command from the base folder of the repository:
 
