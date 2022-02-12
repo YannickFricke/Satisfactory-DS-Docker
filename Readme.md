@@ -2,19 +2,19 @@
 
 ## About this repository
 
-This repository contains everything to start a dockerized dedicated Satisfactory server.
+This repository contains everything you need to start a dockerized dedicated Satisfactory server.
 
-### Differences to other docker images
+### Differences to other Satisfactory docker images
 
 Some images on Docker hub are storing the server files in volumes or on the host filesystem. This is not a best practice in the Docker ecosystem as described [here](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#volume).
 
 Volumes should ONLY be used for user specific configuration / files. The server files are not a part of it and should not be stored in volumes or on the host.
 
-Imagine Coffee Stain Studios breaks the dedicated server software and you wanna play with your friends. Other images would download and store the new server files in the volume. Now every time you start a new container it would read the broken server files and then crash.
+Imagine Coffee Stain Studios breaking the dedicated server software and you want to play with your friends. Other images would download and store the new server files in the volume. Now every time you start a new container it would read the broken server files and then crash, even if you reverted to an older image version.
 
-It wouldn't even help to completely remove the local image due to that these kind of images are using Shell scripts to download and update the server files dynamically.
+It wouldn't even help to completely remove the local image due to the fact that these kind of images are using shell scripts to download and update the server files dynamically.
 
-With this image this can't happen due to that the server files are stored as immutable data inside the container. Coffee Stain Studios broke the build? No problem! Just use the previous build id to run the old image and play with your friends!
+With this image this won't happen, due to the fact that the server files are stored as immutable data inside the container. Coffee Stain Studios broke the build? No problem! Just use the previous build id to run the old image and play with your friends!
 
 ### Do I really need a dedicated server now?
 
@@ -37,13 +37,17 @@ The minimum hardware requirements for running the dedicated server which are lis
 
 ## How to setup
 
-Download the repository to your computer or server and run the following command:
+1. Download the repository to your computer or server and run the following command:
 
-- docker-compose up
+- `docker-compose up -d`
 
+2. Make sure that the host directory that your [bind mount](https://docs.docker.com/storage/bind-mounts/) uses has the correct permissions for the container user. Because this image runs the server executable as the `steam` user, a bind mount might not be writable for the `steam` user. If you run into this issue run the following command from the base folder of the repository:
+
+- `chown -R 1000:1000 /shared` 
+ 
 ### Further ingame setup
 
-Take a look at the awesome video of Jace (one of the Community Managers @ Coffee Stain Studios) how you set up the server ingame [here](https://youtu.be/Nn-1s87JJxc?t=490).
+Take a look at the awesome video of Jace (one of the Community Managers @ Coffee Stain Studios) on how to set up the server ingame [here](https://youtu.be/Nn-1s87JJxc?t=490).
 
 ## Loading a savegame
 
@@ -51,7 +55,7 @@ The folks at Satisfactory wiki have a pretty neat guide on how you can upload th
 
 Everything that you need to know regarding this Docker setup is, that you need to place the file in the `shared/SaveGames` directory. `docker-compose` will then mount the directory to the required location inside the container.
 
-As far as I know there will be the possibility that you can upload your savegame directly to the server once it is implemented. Then you won't need the linked guide anymore.
+As far as I know you will be able to upload your savegame directly to the server from the game once it is implemented. Then you won't need the linked guide anymore.
 
 ## Known problems
 
